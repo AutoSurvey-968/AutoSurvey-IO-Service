@@ -1,6 +1,5 @@
 package com.revature.autosurvey.aspects;
 
-import java.util.Arrays;
 import java.util.Formatter;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +21,6 @@ public class LoggingAspect {
 		Object result = null;
 		Logger log = LogManager.getLogger(pjp.getTarget().getClass());
 		log.trace("Method with signature: %s", pjp.getSignature());
-		//log.trace("with arguments: %s", Arrays.toString(pjp.getArgs()));
 		try {
 			result = pjp.proceed();
 		} catch (Throwable t) {
