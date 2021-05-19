@@ -21,9 +21,7 @@ public class IOServiceImpl {
 	private JavaMailSender emailSender;
 	private static Logger log = LogManager.getLogger(IOServiceImpl.class);
 
-	public void SendEmail(String[] recipients, String subject, String body, String[] attachments) {
-		log.debug("Sending email to: " + recipients + "\n Subject " + subject + "\n Body: " + body + "\n Attachment: "
-				+ attachments);
+	public void sendEmail(String[] recipients, String subject, String body, String[] attachments) {
 		if (ArrayUtils.isEmpty(attachments)) {
 			SimpleMailMessage emailMessage = new SimpleMailMessage();
 			emailMessage.setFrom("noreply@revature.com");

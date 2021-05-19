@@ -15,6 +15,6 @@ public class IOController {
 	public void sendEmail(@RequestParam(name = "recipient") String[] recipients, @RequestParam(name = "subject") String subject, 
 			@RequestParam(name = "message") String message, @RequestParam(name = "attachment", defaultValue="") String[] attachments) {
 		
-		ioService.SendEmail(recipients, subject, message, attachments);
+		ioService.sendEmail(recipients, subject, message, attachments);
 	}
 }

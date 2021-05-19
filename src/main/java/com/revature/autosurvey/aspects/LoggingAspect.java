@@ -1,6 +1,7 @@
 package com.revature.autosurvey.aspects;
 
 import java.util.Arrays;
+import java.util.Formatter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +41,9 @@ public class LoggingAspect {
 			// stopping the exception from being thrown (it needs to be handled elsewhere)
 			// but we do want to log it for ourselves.
 		}
-		log.trace("Method returning with: s", result);
+		Formatter formatter = new Formatter();
+		formatter.format("Method returning with: %s", result);
+		log.trace(formatter);
 		return result;
 	}
 
