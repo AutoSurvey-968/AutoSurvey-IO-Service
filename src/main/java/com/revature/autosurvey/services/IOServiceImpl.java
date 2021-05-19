@@ -45,7 +45,9 @@ public class IOServiceImpl {
 				emailSender.send(message);
 				
 			} catch (MessagingException e) {
-				e.printStackTrace();
+				for (StackTraceElement s : e.getStackTrace()) {
+					log.warn(s);
+				}
 			}
 		}
 	}
