@@ -1,4 +1,4 @@
-package com.revature.autosurvey.io;
+package com.revature.autosurvey;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,5 +11,4 @@ public class IOApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IOApplication.class, args);
 	}
-
 }
