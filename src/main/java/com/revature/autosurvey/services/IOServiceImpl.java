@@ -23,18 +23,25 @@ public class IOServiceImpl implements IOService {
 	@Autowired
 	private JavaMailSender emailSender;
 	private static Logger log = LoggerFactory.getLogger(IOServiceImpl.class);
-	
+
 	@Override
 	public void sendEmail(String[] recipients, String subject, String body, String[] attachments) {
 		if (ArrayUtils.isEmpty(attachments)) {
 			log.info("Sending and email without attachments...");
-			SimpleMailMessage emailMessage = new SimpleMailMessage();
-			emailMessage.setFrom("noreply@revature.com");
-			emailMessage.setTo(recipients);
-			emailMessage.setSubject(subject);
-			emailMessage.setText(body);
-			emailSender.send(emailMessage);
-			log.trace("Email Sent successfully.");
+			try {
+				SimpleMailMessage emailMessage = new SimpleMailMessage();
+				emailMessage.setFrom("noreply@revature.com");
+				emailMessage.setTo(recipients);
+				emailMessage.setSubject(subject);
+				emailMessage.setText(body);
+				emailSender.send(emailMessage);
+				log.trace("Email Sent successfully.");
+			} catch (Exception e) {
+				for (StackTraceElement s : e.getStackTrace()) {
+					log.debug(s.toString());
+				}
+
+			}
 		} else {
 			MimeMessage message = emailSender.createMimeMessage();
 			try {
