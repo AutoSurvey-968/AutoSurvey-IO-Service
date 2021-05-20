@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class IOServiceImpl implements IOService {
 	@Autowired
 	private JavaMailSender emailSender;
-	Logger log = LoggerFactory.getLogger(IOServiceImpl.class);
+	private static Logger log = LoggerFactory.getLogger(IOServiceImpl.class);
 	
 	@Override
 	public void sendEmail(String[] recipients, String subject, String body, String[] attachments) {

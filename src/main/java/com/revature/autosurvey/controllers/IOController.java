@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class IOController {
 	@Autowired
 	private IOService ioService;
-	Logger log = LoggerFactory.getLogger(IOController.class);
+	private static Logger log = LoggerFactory.getLogger(IOController.class);
 	
 	@PostMapping("io")
 	public void sendEmail(@RequestParam(name = "recipient") String[] recipients, @RequestParam(name = "subject") String subject, 
