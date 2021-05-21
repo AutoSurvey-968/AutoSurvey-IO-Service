@@ -30,20 +30,8 @@ public class IOServiceImpl implements IOService {
 
 	@Override
 	public Mono<Void> sendEmail(String[] recipients, String subject, String body, String[] attachments) {
-		ArrayList<String> recipientsTemp = new ArrayList<String>();
-
-		for (String str : recipients) {
-			if (isValidEmailAddress(str)) {
-				recipientsTemp.add(str);
-			}
-		}
-
-		String[] newRecipients = new String[recipientsTemp.size()];
-
-		for (int i = 0; i < newRecipients.length; i++) {
-			newRecipients[i] = recipientsTemp.get(i);
-		}
-
+		String[] newRecipients = newRecipients(recipients);
+		
 		if (ArrayUtils.isEmpty(attachments)) {
 			log.info("Sending and email without attachments...");
 			try {
@@ -83,6 +71,24 @@ public class IOServiceImpl implements IOService {
 			}
 		}
 		return null;
+	}
+	
+	public static String[] newRecipients(String[] recipients) {
+		ArrayList<String> recipientsTemp = new ArrayList<String>();
+		
+		for (String str : recipients) {
+			if (isValidEmailAddress(str)) {
+				recipientsTemp.add(str);
+			}
+		}
+
+		String[] newRecipients = new String[recipientsTemp.size()];
+
+		for (int i = 0; i < newRecipients.length; i++) {
+			newRecipients[i] = recipientsTemp.get(i);
+		}
+		
+		return newRecipients;
 	}
 
 	public static boolean isValidEmailAddress(String email) {
