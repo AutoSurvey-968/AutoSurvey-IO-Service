@@ -26,4 +26,4 @@ List of features ready and TODOs for future development
 Set Email address and password environment variables
 
 ## Usage
-Upload microservice to a service, start it up and then send it requests with recipients, message, body and any attachments.
+Upload microservice to a server, start it up and then send it requests with recipients, message, body and any attachments.
