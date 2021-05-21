@@ -17,7 +17,7 @@ public class IOController {
 	private IOService ioService;
 	private static Logger log = LoggerFactory.getLogger(IOController.class);
 	
-	@PostMapping("io")
+	@PostMapping()
 	public Mono<Void> sendEmail(@RequestParam(name = "recipient") String[] recipients, @RequestParam(name = "subject", defaultValue="From AutoSurvey") String subject, 
 			@RequestParam(name = "message") String message, @RequestParam(name = "attachment", defaultValue="") String[] attachments) {
 		log.trace("Received request to send email.");
