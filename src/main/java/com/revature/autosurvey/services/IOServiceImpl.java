@@ -2,6 +2,7 @@ package com.revature.autosurvey.services;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -74,7 +75,7 @@ public class IOServiceImpl implements IOService {
 	}
 	
 	public static String[] newRecipients(String[] recipients) {
-		ArrayList<String> recipientsTemp = new ArrayList<String>();
+		List<String> recipientsTemp = new ArrayList<>();
 		
 		for (String str : recipients) {
 			if (isValidEmailAddress(str)) {
