@@ -1,11 +1,16 @@
-@tag
-Feature: Send Email
 
-  @tag1
-  Scenario: Send Email
-    Given path 'http://localhost:8080/io'
+Feature: Sending an Email
+
+  Scenario: Send email with attachment
+    Given url 'http://localhost:8083/io'
     And header Content-Type = 'application/json'
-    And request { "recipient": "rjschaber@yahoo.com", "subject": "Test Email", "message": "This is just a test", "attachment": "C:\Users\Doubtless\Pictures\something.jpg" }
+    And params { "recipient": "griffin_reynolds@putsbox.com", "subject": "Test Email", "message": "This is just a test", "attachment": "src/test/resources/genos.jpg" }
     When method POST
     Then status 200
-    And match $ == { recipient: "rjschaber@yahoo.com", subject: "Test Email", message: "This is just a test", attachment: "C:\Users\Doubtless\Pictures\something.jpg" }
+    
+  Scenario: Send email without attachment
+    Given url 'http://localhost:8083/io'
+    And header Content-Type = 'application/json'
+    And params { "recipient": "griffin_reynolds@putsbox.com", "subject": "Test Email", "message": "This is just a test" }
+    When method POST
+    Then status 200

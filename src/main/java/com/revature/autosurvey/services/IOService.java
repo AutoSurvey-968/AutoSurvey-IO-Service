@@ -1,6 +1,8 @@
 package com.revature.autosurvey.services;
 
+import reactor.core.publisher.Mono;
+
 public interface IOService {
 
-	void sendEmail(String[] recipients, String subject, String body, String[] attachments);
+	Mono<Void> sendEmail(String[] recipients, String subject, String body, String[] attachments);
 }

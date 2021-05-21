@@ -1,8 +1,11 @@
 package com.revature.autosurvey.services;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -12,6 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -25,13 +29,28 @@ public class IOServiceImpl implements IOService {
 	private static Logger log = LoggerFactory.getLogger(IOServiceImpl.class);
 
 	@Override
-	public void sendEmail(String[] recipients, String subject, String body, String[] attachments) {
+	public Mono<Void> sendEmail(String[] recipients, String subject, String body, String[] attachments) {
+		ArrayList<String> recipientsTemp = new ArrayList<String>();
+
+		for (String str : recipients) {
+			if (isValidEmailAddress(str)) {
+				recipientsTemp.add(str);
+			}
+		}
+
+		String[] newRecipients = new String[recipientsTemp.size()];
+
+		for (int i = 0; i < newRecipients.length; i++) {
+			newRecipients[i] = recipientsTemp.get(i);
+		}
+
 		if (ArrayUtils.isEmpty(attachments)) {
 			log.info("Sending and email without attachments...");
 			try {
+
 				SimpleMailMessage emailMessage = new SimpleMailMessage();
-				emailMessage.setFrom("noreply@revature.com");
-				emailMessage.setTo(recipients);
+				emailMessage.setFrom("autosurvey968@gmail.com");
+				emailMessage.setTo(newRecipients);
 				emailMessage.setSubject(subject);
 				emailMessage.setText(body);
 				emailSender.send(emailMessage);
@@ -40,15 +59,14 @@ public class IOServiceImpl implements IOService {
 				for (StackTraceElement s : e.getStackTrace()) {
 					log.debug(s.toString());
 				}
-
 			}
 		} else {
 			MimeMessage message = emailSender.createMimeMessage();
 			try {
 				log.info("Sending and email with attachments...");
 				MimeMessageHelper helper = new MimeMessageHelper(message, true);
-				helper.setFrom("noreply@revature.com");
-				helper.setTo(recipients);
+				helper.setFrom("autosurvey968@gmail.com");
+				helper.setTo(newRecipients);
 				helper.setSubject(subject);
 				helper.setText(body);
 
@@ -64,5 +82,18 @@ public class IOServiceImpl implements IOService {
 				}
 			}
 		}
+		return null;
 	}
+
+	public static boolean isValidEmailAddress(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
+		}
+		return result;
+	}
+
 }
