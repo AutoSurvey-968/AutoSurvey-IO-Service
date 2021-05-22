@@ -1,4 +1,4 @@
-package com.revature.autosurvey;
+package com.revature.autosurvey.IO;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.revature.autosurvey.aspects;
+package com.revature.autosurvey.IO.aspects;
 
 import java.util.Formatter;
 
@@ -46,7 +46,7 @@ public class LoggingAspect {
 	}
 
 	// hook - a method that only exists as the target for an annotation
-	@Pointcut("execution( * com.revature.autosurvey..*(..) )")
+	@Pointcut("execution( * com.revature.autosurvey.IO..*(..) )")
 	private void everything() {
 		/* Empty method for hook */ }
 }
