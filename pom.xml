@@ -16,7 +16,8 @@
 	<description>IO Microservice for AutoSurvey-968</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<sonar.projectKey>AutoSurvey-968_AutoSurvey-IO-Service</sonar.projectKey>
+		<sonar.projectKey>AutoSurvey-968_AutoSurvey-IO-Service
+		</sonar.projectKey>
 		<sonar.organization>autosurvey-968</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
@@ -24,6 +25,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -61,12 +67,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-apache</artifactId>
-			<version>0.9.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
@@ -78,7 +78,7 @@
 		<dependency>
 			<groupId>com.intuit.karate</groupId>
 			<artifactId>karate-junit5</artifactId>
-			<version>0.9.5</version>
+			<version>1.0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -88,6 +88,14 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
