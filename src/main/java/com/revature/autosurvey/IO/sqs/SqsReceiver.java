@@ -27,8 +27,6 @@ public class SqsReceiver {
 	public void queueListener(String payload) {
 		Email payloadEmail = Jackson.fromJsonString(payload, Email.class);
 		String[] recipient = {payloadEmail.getRecipient()};
-		ios.sendEmail(recipient, payloadEmail.getSubject(), payloadEmail.getBody(), new String[0]).doOnError(error -> {
-			log.error("email sent with error: ", error);
-		}).subscribe();
+		ios.sendEmail(recipient, payloadEmail.getSubject(), payloadEmail.getBody(), new String[0]).subscribe();
 	}
 }
