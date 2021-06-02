@@ -71,7 +71,7 @@ public class IOServiceImpl implements IOService {
 				}
 			}
 		}
-		return null;
+		return Mono.empty();
 	}
 	
 	public static String[] newRecipients(String[] recipients) {
