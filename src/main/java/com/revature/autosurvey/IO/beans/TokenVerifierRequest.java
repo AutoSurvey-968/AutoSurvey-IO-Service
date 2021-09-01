@@ -1,5 +1,8 @@
 package com.revature.autosurvey.IO.beans;
 
+import lombok.Data;
+
+@Data
 public class TokenVerifierRequest {
 	private String token;
 	private boolean returnSecureToken;
@@ -7,22 +10,5 @@ public class TokenVerifierRequest {
 	public TokenVerifierRequest() {
 		super();
 	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public boolean isReturnSecureToken() {
-		return returnSecureToken;
-	}
-
-	public void setReturnSecureToken(boolean returnSecureToken) {
-		this.returnSecureToken = returnSecureToken;
-	}
-	
 	
 }
