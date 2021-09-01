@@ -16,6 +16,7 @@ public class Email {
 		this.recipient = recipient;
 		this.subject = subject;
 		this.body = body;
+
 	}
-	
 }
+	
