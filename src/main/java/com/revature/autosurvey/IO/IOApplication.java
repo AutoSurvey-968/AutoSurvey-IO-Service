@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootApplication
 @EnableEurekaClient
 public class IOApplication {
