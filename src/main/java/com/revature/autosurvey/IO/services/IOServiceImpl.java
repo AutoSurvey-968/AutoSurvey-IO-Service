@@ -28,6 +28,10 @@ public class IOServiceImpl implements IOService {
 	@Autowired
 	private JavaMailSender emailSender;
 	private static Logger log = LoggerFactory.getLogger(IOServiceImpl.class);
+	
+	public void setEmailSender(JavaMailSender emailSender) {
+		this.emailSender = emailSender;
+	}
 
 	@Override
 	public Mono<Void> sendEmail(String[] recipients, String subject, String body, String[] attachments) {
